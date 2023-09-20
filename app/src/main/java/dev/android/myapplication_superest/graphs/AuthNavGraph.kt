@@ -9,6 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
+import dev.android.myapplication_superest.presentation.screens.SignInScreen
 import dev.android.myapplication_superest.presentation.screens.SplashScreen
 import dev.android.myapplication_superest.presentation.screens.WelcomeScreen
 import kotlinx.coroutines.delay
@@ -36,17 +37,17 @@ fun NavGraphBuilder.authNavGraph(navController: NavHostController, ) {
             WelcomeScreen(
                 onButtonClicked = {
                     navController.popBackStack()
-                    navController.navigate(Graph.HOME)
+                    navController.navigate("SIGN IN")
                 } )
         }
-      /*  composable(route = AuthScreen.Forgot.route) {
-            ScreenContent(name = AuthScreen.Forgot.route) {}
-        } */
+       composable(route = AuthScreen.SignIn.route) {
+           SignInScreen()
+                   }
     }
 }
 
 sealed class AuthScreen(val route: String) {
     object Splash : AuthScreen(route = "SPLASH")
     object Welcome : AuthScreen(route = "WELCOME")
-  //  object Forgot : AuthScreen(route = "FORGOT")
+   object SignIn : AuthScreen(route = "SIGN IN")
 }
